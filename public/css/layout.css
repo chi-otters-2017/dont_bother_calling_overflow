@@ -1,0 +1,38 @@
+.layout{
+  min-width: 1000px;
+}
+
+#title {
+  display: block;
+  height: 80px;
+  float: left;
+  color: white;
+  font-size: 325%;
+  padding-top: 25px;
+  padding-left: 20px;
+  font-family: Helvetica;
+}
+#layout ul {
+  list-style-type: none;
+  margin: 0px;
+  padding: 0px;
+  overflow: hidden;
+  background-color: #333;
+}
+
+li.navigation {
+  float: right;
+}
+.navigation a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 44px 16px;
+  font-size: 125%;
+  font-family: Helvetica;
+  text-decoration: none;
+}
+
+.navigation a:hover {
+    background-color: #111;
+}
