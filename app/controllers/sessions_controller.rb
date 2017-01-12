@@ -13,7 +13,7 @@ post "/sessions" do
   end
 end
 
-post "/sessions/:id" do
+delete "/sessions" do
   sessions[:id] = nil
   redirect "/questions"
 end
