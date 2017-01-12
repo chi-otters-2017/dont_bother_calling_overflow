@@ -4,8 +4,10 @@
   <h4 style="color: red"><%=error%></h4>
   <%end%>
 <%end%>
-<form method="Post" action="/<%=@commentable_type%>/<%=@commentable_id%>/comments" align="center">
+<form method="Post" action="/comments" align="center">
   Comment text:
   <input type="body" name="body">
+  <input type="hidden" name="commentable_id" value="<%=@commentable_id%>">
+  <input type="hidden" name="commentable_type" value="<%=@commentable_type%>">
   <input type="submit" value="Post Comment">
 </form>

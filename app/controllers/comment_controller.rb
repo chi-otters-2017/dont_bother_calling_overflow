@@ -4,7 +4,7 @@ get "/:commentable_type/:commentable_id/comments/new" do
   erb :"/comments/new"
 end
 
-post "/:commentable_type/:commentable_id/comments" do
+post "/comments" do
   @comment = Comment.new({commentable_type: params[:commentable_type],
                           commentable_id: params[:commentable_id],
                           body: params[:body],
