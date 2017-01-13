@@ -1,7 +1,7 @@
 $(document).ready(function(){
   $("#login").on("click", function(){
     event.preventDefault();
-    $(".hidden").removeClass("hidden")
+    $(".popup").removeClass("hidden")
   });
   $("#actual_popup").on("submit", function(){
     $(".popup").addClass("hidden");

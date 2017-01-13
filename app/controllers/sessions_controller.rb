@@ -8,7 +8,7 @@ post "/sessions" do
   if User.authenticate(params[:session][:email], params[:session][:password]) != nil
     session[:id]= user.id
     if request.xhr?
-      erb :"/users/debug"
+      redirect "/users/#{user.id}"
     else
      redirect "/"
     end
