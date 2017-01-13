@@ -1,0 +1,29 @@
+<h1>Page for <%=@user.user_name%></h1>
+<div class='questions-container'>
+  <% if @users_questions %>
+    <% @users_questions.each do |question| %>
+      <article id="<%= question.id %>">
+        <%if login_check%>
+        <form id="upvote_button" class="upvote_button" method="post" action="/votes">
+            <input type="hidden" name="vote_id" value="true">
+            <input type="hidden" name="voteable_id" value="<%= question.id %>">
+            <input type="hidden" name="voteable_type" value="Question">
+            <input type="submit" value="^">
+        </form>
+        <form id="downvote_button" class="downvote_button" method="post" action="/votes">
+            <input type="hidden" name="vote_id" value="false">
+            <input type="hidden" name="voteable_id" value="<%= question.id %>">
+            <input type="hidden" name="voteable_type" value="Question">
+            <input type="submit" value="v">
+        </form>
+      <%end%>
+        <form id="question" method="get" action='/questions/<%= question.id %>'>
+          <%=question.id%>
+          <input type="submit" value="<%= question.title %>" style=" border-width:0px; color:blue; " />
+          <%=question.vote_tally%>
+        </form>
+      </article>
+
+    <% end %>
+  <% end %>
+</div>

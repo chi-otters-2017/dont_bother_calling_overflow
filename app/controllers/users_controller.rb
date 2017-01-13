@@ -13,6 +13,11 @@ get "/users/new" do
   erb :"/users/new"
 end
 
+get "/users/:id" do
+  @user = User.find(params[:id])
+  @users_questions = @user.questions
+  erb :"/users/show"
+end
 
 get "/debug" do
   erb :"/users/debug"
