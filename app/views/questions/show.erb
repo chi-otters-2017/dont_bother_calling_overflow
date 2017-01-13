@@ -1,8 +1,18 @@
-<h1>This is an individual question page</h1>
 <div>
-	<p><b>Title:</b> <%= @question.title %></p>
-		<br><br>
-		<%= @question.body %>
+	<h2><%= @question.title %></h2>
+		<br>
+		<%= @question.body %><br><br><br>
+		
+		<h3>Answers:</h3> 
+		<% @question.answers.each do |answer|%>
+		<ul>
+			<li><%= answer.body %></li>
+	  </ul>
+		<% end %>
+		<br>
+		<% if login_check %>
+			<h3><a href="/questions/<%= @question.id %>/answers/new">Add an answer</a></h3>	
+		<% end %>		
 </div>
 
 

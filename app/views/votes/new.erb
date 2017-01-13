@@ -1,0 +1,15 @@
+<h1>Vote for <%=@voteable_type%> <%=@voteable_id%></h1>
+<%if @errors %>
+  <%@errors.each do |error|%>
+  <h4 style="color: red"><%=error%></h4>
+  <%end%>
+<%end%>
+<form method="Post" action="/votes" align="center">
+  <select name="vote_id">
+    <option  value="true">Up Vote</option>
+    <option value="false">Down Vote</option>
+  </select>
+  <input type="hidden" name="voteable_id" value="<%=@voteable_id%>">
+  <input type="hidden" name="voteable_type" value="<%=@voteable_type%>">
+  <input type="submit" value="Post Comment">
+</form>
