@@ -6,4 +6,9 @@
 }
 #question{
   display: inline-block;
+  padding: 5px;
+}
+
+#question_titles {
+	font-size: 20px;
 }
