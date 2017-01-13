@@ -1,0 +1,29 @@
+textarea#edit-field{
+  width: 300px;
+  height: 60px;
+  border: 3px solid #cccccc;
+  padding: 5px;
+  font-family: Helvetica;
+}
+
+#submit-edit {
+  height: 25px;
+  width: 50px;
+  font-weight: 125%;
+  color: #fff;
+  background-color: black;
+  text-shadow: -1px 1px #417cb8;
+  border: none;
+}
+
+#submit-edit:hover,
+#submit-edit.hover {
+  background-color: #7c7e82;
+  text-shadow: -1px 1px #7c7e82;
+}
+
+#submit-edit:active,
+#submit-edit.active {
+  background-color: #7c7e82;
+  text-shadow: -1px 1px #7c7e82;
+}
