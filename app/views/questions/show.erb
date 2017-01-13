@@ -17,7 +17,13 @@
 	<h3>Answers:</h3> 
 	<% @question.answers.each do |answer|%>
 		<ul>
-			<li><%= answer.body %>
+			<li><%= answer.body %><br><br>
+				<% answer.comments.each do |comment| %>
+					<%= comment.body %><br><br>
+				<% end %>					
+				<% if login_check %>
+					<h3><a href="/answers/<%= @answer.id %>/comments/new">Add a comment</a></h3>	
+				<% end %>
 				<% if login_check %>	
 					<% if @answer.user_id == @user.id %>
 						<a href="/questions/<%= @question.id %>/Answer/<%= answer.id %>/edit">Edit answer</a>
