@@ -21,7 +21,8 @@
       <% if login_check %>
         <li class="navigation"><a href='/'>Back to home</a></li>
         <li class="navigation"><a href='/users/<%=session[:id]%>'>Welcome <%=current_user%></a></li>
-        <li class="navigation">
+        <li class="navigation"><form action="/questions/new" method="get"><input id="question_post" type="submit" value="Post a Question"></input></form></li>
+         <li class="navigation">
           <form action="/sessions" method="post">
             <input type="hidden" name="_method" value="delete">
             <input id="logout"  class="navigation" type="submit" value="Logout">

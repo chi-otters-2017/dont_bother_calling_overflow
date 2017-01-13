@@ -23,7 +23,21 @@ $(document).ready(function(){
   });
   $(".upvote_button").on("submit", function(){
     event.preventDefault();
-    $(this).css("color: blue")
-    $.ajax
+    var $whatever = $(this).children(3)
+    $($whatever).css("color: blue")
+    var action = $(this).attr("action")
+    var type = $(this).attr("method")
+    var data = $(this).serialize()
+    console.log("wow this is" +action)
+     console.log("wow that is" +type)
+      console.log("wow all this" +data)
+    $.ajax({
+      url: action,
+      type: type,
+      data: data
+    })
+    .done(function(response){
+      console.log(response)
+    })
   })
 });
