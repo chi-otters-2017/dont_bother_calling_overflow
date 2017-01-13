@@ -2,6 +2,7 @@
 	<h2><%= @question.title %></h2>
 		<br>
 		<%= @question.body %><br><br><br>
+	<a href="/questions/<%= @question.id %>/answers/new">Add an answer</a>	
 		<h3>Answers:</h3> 
 		<% @question.answers.each do |answer|%>
 		<ul>
