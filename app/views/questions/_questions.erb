@@ -15,7 +15,7 @@
 <%end%>
   <form id="question" method="get" action='/questions/<%= question.id %>'>
     <%=question.id%>
-    <input type="submit" value="<%= question.title %>" style=" border-width:0px; color:blue; " />
-    <%=question.vote_tally%>
+    <input id="question_titles" type="submit" value="<%= question.title %>"  />
+    <%=question.vote_tally%> votes
   </form>
 </article>
