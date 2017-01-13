@@ -1,12 +1,16 @@
-get '/questions/new' do 
+get '/' do
+  erb :index
+end
+
+get '/questions/new' do
 
 	erb :"/questions/new"
 end
 
-post '/questions' do 
+post '/questions' do
   @question = Question.new(params[:question])
 
-  if @question.save 
+  if @question.save
 
     redirect "/questions/#{@question.id}"
   else
@@ -18,6 +22,18 @@ end
 
 get '/questions/:id' do
 	@question = Question.find_by(id: params[:id])
-	
-	erb :"/questions/show"
+  if @question
+  	erb :"/questions/show"
+  else
+    redirect '/'
+  end
+
+end
+
+get '/questions' do
+  @allQuestions = Question.all
+  p @allQuestions
+  if @allQuestions
+    erb :index
+  end
 end
