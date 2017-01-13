@@ -36,3 +36,17 @@ li.navigation {
 .navigation a:hover {
     background-color: #111;
 }
+
+.popup {
+  opacity:0.92;
+position: absolute;
+top: 0px;
+left: 0px;
+height: 25%;
+width: 25%;
+background: #000;
+}
+
+.hidden{
+  display: none;
+}

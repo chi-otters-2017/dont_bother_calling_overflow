@@ -1,3 +1,8 @@
+get "/" do
+  redirect "/questions"
+end
+
+
 get "/:commentable_type/:commentable_id/comments/new" do
   @commentable_type = params[:commentable_type]
   @commentable_id = params[:commentable_id]

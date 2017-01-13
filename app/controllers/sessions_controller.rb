@@ -3,10 +3,15 @@ get "/sessions" do
 end
 
 post "/sessions" do
+
   user = User.find_by({email: params[:session][:email]})
   if User.authenticate(params[:session][:email], params[:session][:password]) != nil
     session[:id]= user.id
-    redirect "/questions"
+    if request.xhr?
+      erb :"/users/debug"
+    else
+     redirect "/"
+    end
   else
     @errors = user.errors.full_messages
     erb :"sessions/new"
@@ -14,6 +19,6 @@ post "/sessions" do
 end
 
 delete "/sessions" do
-  sessions[:id] = nil
+  session[:id] = nil
   redirect "/questions"
 end

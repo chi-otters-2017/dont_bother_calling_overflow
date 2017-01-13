@@ -18,17 +18,28 @@
   <div id="layout">
     <ul>
       <li id="title">SinatraOverflow</li>
-      <% if @logged_in %>
+      <% if login_check %>
         <li class="navigation"><a href='/'>Back to home</a></li>
-        <li class="navigation"><a href='users/new'>Welcome</a></li>
-        <li class="navigation"><a href='sessions/new'>Logout</a></li>
+        <li class="navigation"><a href='/users/<%=session[:id]%>'>Welcome</a></li>
+        <li class="navigation"><form action="/sessions" method="post"><input type="hidden" name="_method" value="delete"><input type="submit" value="logout"></li>
       <% else %>
         <li class="navigation"><a href='/'>Back to home</a></li>
-        <li class="navigation"><a href='users/new'>Register</a></li>
-        <li class="navigation"><a href='sessions/new'>Login</a></li>
+        <li class="navigation"><a href='/users/new'>Register</a></li>
+        <li class="navigation" id="login"><a href='/sessions'>Login</a></li>
       <% end %>
     </ul>
-  <div>
+  </div>
+  <div class="hidden popup">
+    <h3>Login</h3>
+    <form id="actual_popup" method="Post" action="/sessions" align="center">
+  Email:
+  <input type="text" name="session[email]">
+  Password:
+  <input type="password" name="session[password]">
+  <input type="submit" value="Submit">
+</form>
+
+  </div>
   <%= yield %>
 </body>
 </html>
