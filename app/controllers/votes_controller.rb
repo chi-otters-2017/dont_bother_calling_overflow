@@ -11,7 +11,6 @@ get "/:voteable_type/:voteable_id/votes/new" do
 end
 
 post "/votes" do
-  p params
   @vote = Vote.new({
     user_id: session[:id],
     voteable_type: params[:voteable_type],
@@ -19,11 +18,10 @@ post "/votes" do
     upvote: params[:vote_id]
     })
   if @vote.save
-    p "I saved"
-    p @vote
+
     redirect "/"
   else
-    p "I'm busted"
+   
     redirect "/"
   end
 end
