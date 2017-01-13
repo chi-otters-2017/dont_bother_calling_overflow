@@ -8,7 +8,8 @@ get '/questions/new' do
 end
 
 post '/questions' do
-  @question = Question.new(params[:question])
+   @user = User.find(session[:id])
+  @question = Question.new(title: params[:title], body: params[:body], user_id: @user.id)
 
   if @question.save
 
@@ -21,7 +22,10 @@ post '/questions' do
 end
 
 get '/questions/:id' do
+  @user = User.find(session[:id])
 	@question = Question.find_by(id: params[:id])
+  @answer = Answer.find_by(question_id: @question.id)
+
   if @question
   	erb :"questions/show"
   else

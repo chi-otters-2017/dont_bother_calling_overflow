@@ -3,12 +3,25 @@
 		<br>
 		<%= @question.body %><br><br><br>
 		
+		<% if @question.user_id == @user.id %>
+			<a href="/questions/<%= @question.id %>/Question/<%= @question.id %>/edit">Edit question</a>
+		<% end %>
+
 		<h3>Answers:</h3> 
 		<% @question.answers.each do |answer|%>
 		<ul>
-			<li><%= answer.body %></li>
+			<li><%= answer.body %>
+				<% if @answer.user_id == @user.id %>
+			<a href="/questions/<%= @question.id %>/Answer/<%= @answer.id %>/edit">Edit answer</a>
+			</li>
 	  </ul>
+
+	<% end %>
 		<% end %>
+
+
+
+
 		<br>
 		<% if login_check %>
 			<h3><a href="/questions/<%= @question.id %>/answers/new">Add an answer</a></h3>	
