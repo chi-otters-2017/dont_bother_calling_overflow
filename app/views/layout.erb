@@ -30,14 +30,14 @@
     </ul>
   </div>
   <div class="hidden popup">
-    <h3>Login</h3>
-    <form id="actual_popup" method="Post" action="/sessions" align="center">
-  Email:
-  <input type="text" name="session[email]">
-  Password:
-  <input type="password" name="session[password]">
-  <input type="submit" value="Submit">
-</form>
+    <label for="actual_popup" class="popup_inner"><h2>Login</h2></label>
+    <form id="actual_popup" method="Post" action="/sessions" align="center"><BR><BR>
+    <label class="popup_inner">Email:</label>
+    <input type="text" name="session[email]"><BR><BR>
+    <label class="popup_inner">Password:</label>
+    <input type="password" name="session[password]"><BR>
+    <input type="submit" value="Submit">
+  </form>
 
   </div>
   <%= yield %>
