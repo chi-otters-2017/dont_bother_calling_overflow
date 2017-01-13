@@ -1,0 +1,13 @@
+<form id="allQuestions" method="get" action="/questions">
+  <input type="submit" value="Display all questions">
+</form>
+
+<div class='questions-container'>
+  <% if @allQuestions %>
+    <% @allQuestions.each do |question| %>
+      <%= erb :_question, locals: {question: question} %>
+    <% end %>
+  <% end %>
+</div>
+
+

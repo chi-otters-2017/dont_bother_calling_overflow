@@ -1,0 +1,5 @@
+<article id="<%= question.id %>">
+  <form id="question" method="get" action='/question/<%= question.id %>'>
+    <input type="submit" value=<%= question.title.to_s %> style="background:none; border-width:0px; color:blue; text-decoration:underline;" />
+  </form>
+</article>
