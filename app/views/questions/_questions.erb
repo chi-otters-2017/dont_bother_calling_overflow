@@ -5,14 +5,14 @@
       <input type="hidden" name="voteable_id" value="<%= question.id %>">
       <input type="hidden" name="voteable_type" value="Question">
       <input type="submit" value="^">
-    </form>
-    <form id="downvote_button" class="downvote_button" method="post" action="/votes">
+  </form>
+  <form id="downvote_button" class="downvote_button" method="post" action="/votes">
       <input type="hidden" name="vote_id" value="false">
       <input type="hidden" name="voteable_id" value="<%= question.id %>">
       <input type="hidden" name="voteable_type" value="Question">
       <input type="submit" value="v">
-    </form>
-    <%end%>
+  </form>
+<%end%>
   <form id="question" method="get" action='/questions/<%= question.id %>'>
     <%=question.id%>
     <input type="submit" value="<%= question.title %>" style=" border-width:0px; color:blue; " />
