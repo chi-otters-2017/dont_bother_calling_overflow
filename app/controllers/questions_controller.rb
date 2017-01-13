@@ -22,7 +22,9 @@ post '/questions' do
 end
 
 get '/questions/:id' do
-  @user = User.find(session[:id])
+  if session[:id]
+    @user = User.find(session[:id])
+  end
 	@question = Question.find_by(id: params[:id])
   @answer = Answer.find_by(question_id: @question.id)
 
