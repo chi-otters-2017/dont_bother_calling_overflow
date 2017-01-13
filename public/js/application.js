@@ -35,8 +35,14 @@ $(document).ready(function(){
       data: data
     })
     .done(function(response){
-      var counter = $($target).parent().parent().find(".vote_tally")
-      $(counter).html("Score: "+ response)
+       if (response === "Cannot vote"){
+        console.log("please work")
+        window.alert("You cannot vote more then once!");
+      }
+      else{
+      var counter = $($target).parent().parent().find(".vote_tally");
+      $(counter).html("Score: "+ response);
+    }
     })
   });
   $(".downvote_button").on("submit", function(){
@@ -53,8 +59,14 @@ $(document).ready(function(){
       data: data
     })
     .done(function(response){
-      var counter = $($target).parent().parent().find(".vote_tally")
-      $(counter).html("Score: "+ response)
+      if (response === "Cannot vote"){
+        console.log("please work")
+        window.alert("You cannot vote more then once!");
+      }
+      else{
+      var counter = $($target).parent().parent().find(".vote_tally");
+      $(counter).html("Score: "+ response);
+    }
     })
   });
 });
