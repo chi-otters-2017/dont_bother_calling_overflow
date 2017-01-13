@@ -1,4 +1,4 @@
-get "/sessions" do
+get "/sessions/new" do
   erb :"/sessions/new"
 end
 
@@ -9,7 +9,7 @@ post "/sessions" do
     redirect "/questions"
   else
     @errors = user.errors.full_messages
-    erb :"sessions/new"
+    erb :"/sessions/new"
   end
 end
 
