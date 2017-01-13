@@ -14,7 +14,11 @@ post "/comments" do
                           body: params[:body],
                           user_id: session[:id]})
   if @comment.save
-    redirect "/#{params[:commentable_type]}/#{params[:commentable_id]}"
+    if params[:commentable_type] == "Question"
+      redirect "/questions/#{params[:commentable_id]}"
+    else
+      redirect "/questions/#{Answer.find(params[:commentable_id]).question.id}"
+    end
   else
     @errors = @comment.errors.full_messages
     erb :"/comments/new"
