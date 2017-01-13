@@ -1,18 +1,43 @@
 <div>
 	<h2><%= @question.title %></h2>
-		<br>
-		<%= @question.body %><br><br><br>
-		
-		<h3>Answers:</h3> 
-		<% @question.answers.each do |answer|%>
-		<ul>
-			<li><%= answer.body %></li>
-	  </ul>
+	<br>
+			<%= @question.body %><br><br><br>
+	<% if login_check %>	
+		<% if @question.user_id == @user.id %>
+			<a href="/questions/<%= @question.id %>/Question/<%= @question.id %>/edit">Edit question</a><br>
 		<% end %>
+	<% end %>
+	<% @question.comments.each do |comment| %>
+		<%= comment.body  %><br><br>
+	<% end  %>
+
+	<% if login_check %>
+		<h3><a href="/questions/<%= @question.id %>/comments/new">Add a comment</a></h3>	
+	<% end %>
+	<h3>Answers:</h3> 
+	<% @question.answers.each do |answer|%>
+		<ul>
+			<li><%= answer.body %><br><br>
+				<% answer.comments.each do |comment| %>
+					<%= comment.body %><br><br>
+				<% end %>					
+				<% if login_check %>
+					<h3><a href="/answers/<%= answer.id %>/comments/new">Add a comment</a></h3>	
+				<% end %>
+				<% if login_check %>	
+					<% if @answer.user_id == @user.id %>
+						<a href="/questions/<%= @question.id %>/Answer/<%= answer.id %>/edit">Edit answer</a>
+					<% end %>	
+				<% end %>	
+			</li>
+	  </ul>	
 		<br>
-		<% if login_check %>
-			<h3><a href="/questions/<%= @question.id %>/answers/new">Add an answer</a></h3>	
-		<% end %>		
+	<% end %>	
+	<% if login_check %>
+		<h3><a href="/questions/<%= @question.id %>/answers/new">Add an answer</a></h3>	
+	<% end %>		
 </div>
+
+
 
 

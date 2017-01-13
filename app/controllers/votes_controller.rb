@@ -18,10 +18,13 @@ post "/votes" do
     upvote: params[:vote_id]
     })
   if @vote.save
-
-    redirect "/"
+    if request.xhr?
+      question = Question.find(params[:voteable_id])
+      question.vote_tally
+    else
+      redirect "/"
+    end
   else
-   
     redirect "/"
   end
 end

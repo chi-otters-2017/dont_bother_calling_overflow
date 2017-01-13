@@ -3,12 +3,16 @@ get '/' do
 end
 
 get '/questions/new' do
-
-	erb :"questions/new"
+  if login_check
+	 erb :"questions/new"
+  else
+    redirect '/'
+  end
 end
 
 post '/questions' do
-  @question = Question.new(params[:question])
+   @user = User.find(session[:id])
+  @question = Question.new(title: params[:title], body: params[:body], user_id: @user.id)
 
   if @question.save
 
@@ -21,7 +25,12 @@ post '/questions' do
 end
 
 get '/questions/:id' do
+  if session[:id]
+    @user = User.find(session[:id])
+  end
 	@question = Question.find_by(id: params[:id])
+  @answer = Answer.find_by(question_id: @question.id)
+
   if @question
   	erb :"questions/show"
   else
