@@ -20,22 +20,39 @@
       <li id="title">DBC Overflow</li>
       <% if login_check %>
         <li class="navigation"><a href='/'>Back to home</a></li>
-        <li class="navigation"><a href='/users/<%=session[:id]%>'>Welcome</a></li>
-        <li class="navigation"><form action="/sessions" method="post"><input type="hidden" name="_method" value="delete"><input type="submit" value="logout"></li>
+        <li class="navigation"><a href='/users/<%=session[:id]%>'>Welcome <%=current_user%></a></li>
+        <li class="navigation">
+          <form action="/sessions" method="post">
+            <input type="hidden" name="_method" value="delete">
+            <input id="logout"  class="navigation" type="submit" value="Logout">
+          </form></li>
       <% else %>
         <li class="navigation"><a href='/'>Back to home</a></li>
-        <li class="navigation"><a href='/users/new'>Register</a></li>
+        <li class="navigation" id="registration"><a href='/users/new'>Register</a></li>
         <li class="navigation" id="login"><a href='/sessions/new'>Login</a></li>
       <% end %>
     </ul>
   </div>
-  <div class="hidden popup">
+  <div class="hidden popup_login">
     <label for="actual_popup" class="popup_inner"><h2>Login</h2></label>
     <form id="actual_popup" method="Post" action="/sessions" align="center"><br><br>
     <label class="popup_inner">Email:</label>
     <input type="text" name="session[email]"><br><br>
     <label class="popup_inner">Password:</label>
     <input type="password" name="session[password]"><br>
+    <input type="submit" value="Submit">
+  </form>
+
+  </div>
+  <div class="hidden popup_register">
+    <label for="actual_popup" class="popup_inner"><h2>Register</h2></label>
+    <form id="actual_popup" method="Post" action="/users" align="center"><br><br>
+    <label class="popup_inner">User Name:</label>
+    <input type="text" name="user[user_name]"><br><br>
+    <label class="popup_inner">Email:</label>
+    <input type="text" name="user[email]"><br><br>
+    <label class="popup_inner">Password:</label>
+    <input type="password" name="user[password]"><br>
     <input type="submit" value="Submit">
   </form>
 
