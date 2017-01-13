@@ -20,7 +20,7 @@ post "/votes" do
   if @vote.save
     if request.xhr?
       question = Question.find(params[:voteable_id])
-      question.vote_tally
+     return "#{question.vote_tally}"
     else
       redirect "/"
     end

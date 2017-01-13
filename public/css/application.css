@@ -7,3 +7,9 @@
 #question{
   display: inline-block;
 }
+.question_id{
+  display: inline-block;
+}
+.vote_tally{
+  display: inline-block;
+}
