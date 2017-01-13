@@ -1,0 +1,9 @@
+.upvote_button{
+  display: inline-block;
+}
+.downvote_button{
+  display: inline-block;
+}
+#question{
+  display: inline-block;
+}
