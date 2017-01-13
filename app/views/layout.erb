@@ -12,12 +12,12 @@
  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
  <script type="text/javascript" src="/js/application.js"></script>
 
-  <title>Sinatra Overflow</title>
+  <title>DBC Overflow</title>
 </head>
 <body>
   <div id="layout">
     <ul>
-      <li id="title">SinatraOverflow</li>
+      <li id="title">DBC Overflow</li>
       <% if login_check %>
         <li class="navigation"><a href='/'>Back to home</a></li>
         <li class="navigation"><a href='/users/<%=session[:id]%>'>Welcome</a></li>
@@ -25,7 +25,7 @@
       <% else %>
         <li class="navigation"><a href='/'>Back to home</a></li>
         <li class="navigation"><a href='/users/new'>Register</a></li>
-        <li class="navigation" id="login"><a href='/sessions'>Login</a></li>
+        <li class="navigation" id="login"><a href='/sessions/new'>Login</a></li>
       <% end %>
     </ul>
   </div>

@@ -1,0 +1,7 @@
+<div class='questions-container'>
+  <% if @allQuestions %>
+    <% @allQuestions.each do |question| %>
+      <%= erb :"questions/_questions", locals: {question: question} %>
+    <% end %>
+  <% end %>
+</div>
