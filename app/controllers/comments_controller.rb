@@ -1,5 +1,9 @@
 get "/:commentable_type/:commentable_id/comments/new" do
-  @commentable_type = params[:commentable_type]
+  if params[:commentable_type] == "questions"
+    @commentable_type = "Question"
+  elsif params[:commentable_type] == "answers"
+    @commentable_type = "Answer"
+  end
   @commentable_id = params[:commentable_id]
   erb :"/comments/new"
 end
