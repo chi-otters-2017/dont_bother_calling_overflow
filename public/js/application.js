@@ -28,16 +28,13 @@ $(document).ready(function(){
     var action = $(this).attr("action")
     var type = $(this).attr("method")
     var data = $(this).serialize()
-    console.log("wow this is" +action)
-     console.log("wow that is" +type)
-      console.log("wow all this" +data)
+
     $.ajax({
       url: action,
       type: type,
       data: data
     })
     .done(function(response){
-      console.log(response)
     })
   })
 });
