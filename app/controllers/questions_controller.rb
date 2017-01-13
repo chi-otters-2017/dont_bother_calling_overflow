@@ -3,8 +3,11 @@ get '/' do
 end
 
 get '/questions/new' do
-
-	erb :"questions/new"
+  if login_check
+	 erb :"questions/new"
+  else
+    redirect '/'
+  end
 end
 
 post '/questions' do
