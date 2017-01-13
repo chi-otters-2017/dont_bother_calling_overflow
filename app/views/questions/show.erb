@@ -22,7 +22,7 @@
 					<%= comment.body %><br><br>
 				<% end %>					
 				<% if login_check %>
-					<h3><a href="/answers/<%= @answer.id %>/comments/new">Add a comment</a></h3>	
+					<h3><a href="/answers/<%= answer.id %>/comments/new">Add a comment</a></h3>	
 				<% end %>
 				<% if login_check %>	
 					<% if @answer.user_id == @user.id %>
