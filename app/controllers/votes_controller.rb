@@ -22,10 +22,9 @@ post "/votes" do
       question = Question.find(params[:voteable_id])
       question.vote_tally
     else
-    redirect "/"
-  end
+      redirect "/"
+    end
   else
-
     redirect "/"
   end
 end
