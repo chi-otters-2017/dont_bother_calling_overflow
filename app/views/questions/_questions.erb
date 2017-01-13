@@ -1,6 +1,7 @@
 <article id="<%= question.id %>">
   <form id="question" method="get" action='/questions/<%= question.id %>'>
-
+    <%=question.id%>
     <input type="submit" value="<%= question.title %>" style=" border-width:0px; color:blue; " />
+    <%=question.vote_tally%>
   </form>
 </article>

@@ -39,9 +39,12 @@ li.navigation {
 
 .popup {
   opacity:0.92;
-position: absolute;
-top: 0px;
-left: 0px;
+  position: absolute;
+  z-index: 15;
+  top: 50%;
+  left: 50%;
+  margin: -100px 0 0 -150px;
+
 height: 25%;
 width: 25%;
 background: #000;
@@ -49,4 +52,12 @@ background: #000;
 
 .hidden{
   display: none;
+}
+
+.popup_inner{
+  color: white;
+  float: right;
+  margin-right: 50%;
+  text-align: center;
+
 }
