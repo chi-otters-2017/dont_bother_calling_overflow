@@ -13,18 +13,12 @@
       <input type="submit" value="v">
   </form>
 <%end%>
-  <p class="question_id">Question #<%=question.id%></p>
   <form id="question" method="get" action='/questions/<%= question.id %>'>
-    <div>
-
-      <input type="submit" value="<%= question.title %>" style=" border-width:0px; color:blue; " />
-
-  </div>
+    
     <%=question.id%>
-    <input id="question_titles" type="submit" value="<%= question.title %>"  />
-    <%=question.vote_tally%> votes
+      <input id="question_titles" type="submit" value="<%= question.title %>"  />
+      <%=question.vote_tally%> votes
     </form>
-   <p class="vote_tally">Score: <%=question.vote_tally%></p>
 </article>
 
 
