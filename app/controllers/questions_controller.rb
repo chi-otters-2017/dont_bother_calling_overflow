@@ -69,11 +69,20 @@ put '/:comment_type/:id' do
   @comment_type = params[:comment_type]
   @class_name = Object.const_get(@comment_type)
   @class_obj = @class_name.find(params[:id])
-  if @class_obj.update_attributes(body: params[:body_text])
-    redirect "/questions/#{params[:question_id]}"
+  if request.xhr?
+    p "SERVER SIDE SAYS HI"
+    p params
+    if @class_obj.update_attributes(body: params[:body_text])
+      @class_obj.body
+      # ???????????????????????
+    end
   else
-    @errors = @class_obj.errors.full_messages
-    erb :edit
+    if @class_obj.update_attributes(body: params[:body_text])
+      redirect "/questions/#{params[:question_id]}"
+    else
+      @errors = @class_obj.errors.full_messages
+      erb :edit
+    end
   end
 end
 

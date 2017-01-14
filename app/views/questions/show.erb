@@ -1,18 +1,26 @@
 <div>
-	<h2><%= @question.title %></h2>
-	<br>
-			<%= @question.body %><br><br><br>
-	<% if login_check %>	
-		<% if @question.user_id == @user.id %>
-			<a href="/questions/<%= @question.id %>/Question/<%= @question.id %>/edit">Edit question</a><br>
-		<% end %>
+	<h2><%= @question.title %></h2><br>
+	<p class="question-body"><%= @question.body %></p><br><br><br>
+	<% if login_check && @question.user_id == @user.id%>	
+		<a id="edit-question-link" href="/questions/<%= @question.id %>/Question/<%= @question.id %>/edit">Edit question</a><br>
 	<% end %>
 	<% @question.comments.each do |comment| %>
 		<%= comment.body  %><br><br>
 	<% end  %>
 
 	<% if login_check %>
-		<h3><a href="/questions/<%= @question.id %>/comments/new">Add a comment</a></h3>	
+		<h3><a href="/questions/<%= @question.id %>/comments/new">Add a comment</a></h3>
+
+		<div class="text-form hidden">
+		  <form method="Put" action="/Question/<%=@question.id%>" align="center">
+		    <h1>Edit your question</h1>
+<!-- 		    <input type="hidden" name="_method" value="PUT">
+		    <input type="hidden" name="question_id" value=<@question.id%> > -->
+		    <textarea id="edit-field" rows="4" cols="20" name="body_text"><%=@question.body%></textarea>
+		    <input id="submit-edit" type="submit" value="submit">
+		  </form>
+		</div>
+
 	<% end %>
 	<h3>Answers:</h3> 
 	<% @question.answers.each do |answer|%>
