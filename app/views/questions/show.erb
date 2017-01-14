@@ -4,11 +4,11 @@
 	<% if login_check && @question.user_id == @user.id%>
 		<h4><a id="edit-question-link" class="comment" href="/questions/<%= @question.id %>/Question/<%= @question.id %>/edit">Edit question</a></h4><br>
 	<% end %>
-	<h3><%= @question.comments.count %> Comments</h3>
+	<div class="comment_block"><h4><%= @question.comments.count %> Comments</h4>
 	<% @question.comments.each do |comment| %>
-		<hr><%= comment.body  %></hr><br><br>
+		<hr><p class="comment_block"><%= comment.body  %></p></hr>
 	<% end %>
-	<br>
+
 	<% if login_check %>
 		<h4><a class="comment" href="/questions/<%= @question.id %>/comments/new">Add a comment</a></h4>
 
@@ -21,23 +21,26 @@
 		</div>
 
 	<% end %>
+	</div>
 	<br>
 	<h3><%= @question.answers.count %> Answers</h3>
-	<div class="verticalLine">
+
 	<% @question.answers.each do |answer|%>
 		<% if answer.best_answer %>
-			
+	<div class="verticalLine">			
 				<h4 id="best_answer">Best answer</h4>
 				<p class="body_fonts"><%= answer.body %></p>
-			</div>	
-					<h3><%= answer.comments.count %> Comments</h3>					
+	</div>	
+						<div class="comment_block">
+					<h4><%= answer.comments.count %> Comments</h4>					
 					<% answer.comments.each do |comment| %>
-						<hr><%= comment.body %></hr><br>
+						<hr><p class="comment_block"><%= comment.body %></p></hr>
 					<% end %>
 
 					<% if login_check %>
 						<h4><a class="comment" href="/answers/<%= answer.id %>/comments/new">Add a comment</a></h4>
 					<% end %>
+	</div>				
 					<% if login_check && @answer.user_id == @user.id %>
 							<h4><a class="comment" href="/questions/<%= @question.id %>/Answer/<%= answer.id %>/edit">Edit answer</a></h4>
 					<% end %>
@@ -46,27 +49,29 @@
 	  <% end %>
 	<% end %>
 	<% if @question.answers != [] %>
-	<div class="verticalLine">
-	<% @question.answers.each do |answer|%>
-		<% if !answer.best_answer && login_check%>
 
+	<% @question.answers.each do |answer|%>
+
+		<% if !answer.best_answer && login_check%>
+		<div class="verticalLine">
 					<p class="body_fonts"><%= answer.body %></p>
 	</div>
-						<h3><%= answer.comments.count %> Comments</h3>	
+				<div class="comment_block">
+						<h4><%= answer.comments.count %> Comments</h4>	
 						<% answer.comments.each do |comment| %>
-							<hr><%= comment.body %></hr><br><br>
+							<hr><p class="comment_block"><%= comment.body  %></p></hr>
 						<% end %>
 
 						<% if @question.user_id == @user.id && !@question.answers.find { |answer| answer.best_answer } %>
 					  	<form method="post" action="/answers/<%= answer.id %>">
-								<input type="submit"  value="Pick as best answer."></input><br>
+								<input type="submit"  value="Pick as best answer"></input><br>
 							</form>
 						<% end %>
 
 						<% if login_check %>
 							<h4><a class="comment" class="comment" href="/answers/<%= answer.id %>/comments/new">Add a comment</a></h4>
 						<% end %>
-
+				</div>		
 						<% if login_check && @answer.user_id == @user.id %>
 								<h4><a class="comment" href="/questions/<%= @question.id %>/Answer/<%= answer.id %>/edit">Edit answer</a></h4>
 						<% end %>
@@ -74,7 +79,7 @@
 		<br>
 	<% end %>
 <% end %>
-	<br>
+
 
 	<% if login_check %>
 		<h4><a class="comment" href="/questions/<%= @question.id %>/answers/new">Add an answer</a></h4>
