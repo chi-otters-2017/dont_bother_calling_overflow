@@ -4,6 +4,7 @@ $(document).ready(function(){
     $(".popup_login").removeClass("hidden")
     $(".popup_login").addClass("displayed");
   });
+
   $("#actual_popup").on("submit", function(){
     $(".popup_login").removeClass("displayed");
     $(".popup_login").addClass("hidden");
@@ -14,13 +15,15 @@ $(document).ready(function(){
       url: action,
       method: method,
       data: data
-    })
+    });
   });
+
   $("#registration").on("click", function(){
     event.preventDefault();
     $(".popup_register").removeClass("hidden")
     $(".popup_register").addClass("displayed");
   });
+
   $(".upvote_button").on("submit", function(){
     event.preventDefault();
     var $target= $(this).children().get(3)
@@ -60,15 +63,15 @@ $(document).ready(function(){
       $(".text-form").addClass("hidden");
     });
 
-       if (response === "Cannot vote"){
-        window.alert("You cannot vote more then once!");
+      if (response === "Cannot vote"){window.alert("You cannot vote more then once!");
       }
       else{
-      var counter = $($target).parent().parent().find(".vote_tally");
-      $(counter).html("Score: "+ response);
-    }
+        var counter = $($target).parent().parent().find(".vote_tally");
+        $(counter).html("Score: "+ response);
+      }
     })
   });
+
   $(".downvote_button").on("submit", function(){
     event.preventDefault();
     var $target= $(this).children().get(3)
@@ -89,9 +92,10 @@ $(document).ready(function(){
       else{
       var counter = $($target).parent().parent().find(".vote_tally");
       $(counter).html("Score: "+ response);
-    }
-    })
-      });
+      }
+  });
+
 });
+
 
 
