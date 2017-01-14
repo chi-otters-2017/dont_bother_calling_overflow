@@ -61,7 +61,6 @@ $(document).ready(function(){
     });
 
        if (response === "Cannot vote"){
-        console.log("please work")
         window.alert("You cannot vote more then once!");
       }
       else{
@@ -85,7 +84,6 @@ $(document).ready(function(){
     })
     .done(function(response){
       if (response === "Cannot vote"){
-        console.log("please work")
         window.alert("You cannot vote more then once!");
       }
       else{
