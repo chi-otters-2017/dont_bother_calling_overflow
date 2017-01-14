@@ -53,8 +53,7 @@ get '/questions/:question_id/:comment_type/:id/edit' do
     @class_name = Object.const_get(@comment_type)
     @class_obj = @class_name.find(params[:id])
     @question_id = params[:question_id]
-    p "@class_obj: #{@class_obj}"
-    p "if #{@class_obj.user_id} == #{@user.id}"
+
     if @class_obj.user_id == @user.id
       erb :edit
     else
@@ -70,11 +69,8 @@ put '/:comment_type/:id' do
   @class_name = Object.const_get(@comment_type)
   @class_obj = @class_name.find(params[:id])
   if request.xhr?
-    p "SERVER SIDE SAYS HI"
-    p params
     if @class_obj.update_attributes(body: params[:body_text])
       @class_obj.body
-      # ???????????????????????
     end
   else
     if @class_obj.update_attributes(body: params[:body_text])
