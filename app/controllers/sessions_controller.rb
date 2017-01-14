@@ -13,7 +13,7 @@ post "/sessions" do
      redirect "/"
     end
   else
-    @errors = user.errors.full_messages
+    @errors = ["Incorrect Password"]
     erb :"/sessions/new"
   end
 end
