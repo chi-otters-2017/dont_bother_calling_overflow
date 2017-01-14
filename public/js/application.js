@@ -1,13 +1,14 @@
 $(document).ready(function(){
   $("#login").on("click", function(){
     event.preventDefault();
-    $(".popup_login").removeClass("hidden")
-    $(".popup_login").addClass("displayed");
+    console.log($(".popup")[0]);
+    $($(".popup")[0]).removeClass("hidden")
+    $($(".popup")[0]).addClass("displayed");
   });
 
   $("#actual_popup").on("submit", function(){
-    $(".popup_login").removeClass("displayed");
-    $(".popup_login").addClass("hidden");
+    $(".popup").removeClass("displayed");
+    $(".popup").addClass("hidden");
     var data = $(this).serialize()
     var action = $(this).attr("action")
     var method = $(this).attr("method")
@@ -20,8 +21,9 @@ $(document).ready(function(){
 
   $("#registration").on("click", function(){
     event.preventDefault();
-    $(".popup_register").removeClass("hidden")
-    $(".popup_register").addClass("displayed");
+    $($(".popup")[1]).removeClass("hidden")
+    $($(".popup")[1]).addClass("displayed");
+    $($(".popup")[1]).css("height","30%");
   });
 
   $(".upvote_button").on("submit", function(){
@@ -52,7 +54,7 @@ $(document).ready(function(){
     var action = $form.attr("action");
     var method = $form.attr("method");
     var data = $form.serialize();
-    
+
     $.ajax({
       method: method,
       url: action,
