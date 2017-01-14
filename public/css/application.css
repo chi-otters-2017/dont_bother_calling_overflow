@@ -56,7 +56,7 @@
 	border-style: solid;
 	border-color: #A9A9A9; 
 	border-width: 1px;
-	padding-left: 1em;
+	padding-left: 8px;
 	padding-right: 1em;
 }
 
@@ -67,4 +67,8 @@ hr {
   background-image: -moz-linear-gradient(left, #f0f0f0, #8c8b8b, #f0f0f0);
   background-image: -ms-linear-gradient(left, #f0f0f0, #8c8b8b, #f0f0f0);
   background-image: -o-linear-gradient(left, #f0f0f0, #8c8b8b, #f0f0f0); 
+}
+
+.comment_block {
+    text-indent: 15px;
 }
