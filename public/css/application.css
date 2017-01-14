@@ -6,10 +6,16 @@
 }
 #question{
   display: inline-block;
+  padding: 5px;
 }
+
 .question_id{
   display: inline-block;
 }
 .vote_tally{
   display: inline-block;
+}
+
+#question_titles {
+	font-size: 20px;
 }

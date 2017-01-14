@@ -20,6 +20,11 @@
       <input type="submit" value="<%= question.title %>" style=" border-width:0px; color:blue; " />
 
   </div>
-  </form>
+    <%=question.id%>
+    <input id="question_titles" type="submit" value="<%= question.title %>"  />
+    <%=question.vote_tally%> votes
+    </form>
    <p class="vote_tally">Score: <%=question.vote_tally%></p>
 </article>
+
+

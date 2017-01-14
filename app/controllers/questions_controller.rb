@@ -70,7 +70,7 @@ put '/:comment_type/:id' do
   @class_name = Object.const_get(@comment_type)
   @class_obj = @class_name.find(params[:id])
   if @class_obj.update_attributes(body: params[:body_text])
-    redirect "/questions/#{@class_obj.id}"
+    redirect "/questions/#{params[:question_id]}"
   else
     @errors = @class_obj.errors.full_messages
     erb :edit
