@@ -31,10 +31,10 @@
 				<% answer.comments.each do |comment| %>
 					<%= comment.body %><br><br>
 				<% end %>
-				<% if @question.user_id == @user.id %>
-			  	<form method="post" action="/answers/<%= answer.id %>">
-						<input type="submit"  value="Pick as best answer."></input><br>
-					</form>
+				<% if (@question.user_id == @user.id) && ((@question.answers.select { |answer| answer.best_answer == true }) == []) %>
+				  	<form method="post" action="/answers/<%= answer.id %>">
+							<input type="submit"  value="Pick as best answer."></input><br>
+						</form>
 				<% end %>
 
 				<% if login_check %>
