@@ -18,3 +18,11 @@ post "/questions/:id/answers" do
 	  erb :'answers/new'
 	end
 end
+
+post "/answers/:id" do
+	@answer = Answer.find(params[:id])
+	@answer.best_answer = true
+	@answer.save
+	question = @answer.question
+	redirect "/questions/#{question.id}"
+end
