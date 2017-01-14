@@ -11,20 +11,24 @@ get "/:voteable_type/:voteable_id/votes/new" do
 end
 
 post "/votes" do
-  @vote = Vote.new({
-    user_id: session[:id],
-    voteable_type: params[:voteable_type],
-    voteable_id: params[:voteable_id],
-    upvote: params[:vote_id]
-    })
-  if @vote.save
-    if request.xhr?
-      question = Question.find(params[:voteable_id])
-      question.vote_tally
+  if vote_check(session[:id], params[:voteable_type],params[:voteable_id])
+    @vote = Vote.new({
+      user_id: session[:id],
+      voteable_type: params[:voteable_type],
+      voteable_id: params[:voteable_id],
+      upvote: params[:vote_id]
+      })
+    if @vote.save
+      if request.xhr?
+        question = Question.find(params[:voteable_id])
+       return "#{question.vote_tally}"
+      else
+        redirect "/"
+      end
     else
       redirect "/"
     end
   else
-    redirect "/"
+    return "Cannot vote"
   end
 end
