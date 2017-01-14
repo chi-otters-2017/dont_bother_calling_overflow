@@ -47,7 +47,7 @@
 	<% @question.answers.each do |answer|%>
 		<% if !answer.best_answer %>
 			<ul>
-					<li><%= answer.body %><br><br>
+					<li><%= answer.body %><br>
 						<% answer.comments.each do |comment| %>
 							<%= comment.body %><br><br>
 						<% end %>
