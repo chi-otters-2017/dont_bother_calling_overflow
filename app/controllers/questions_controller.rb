@@ -53,8 +53,7 @@ get '/questions/:question_id/:comment_type/:id/edit' do
     @class_name = Object.const_get(@comment_type)
     @class_obj = @class_name.find(params[:id])
     @question_id = params[:question_id]
-    p "@class_obj: #{@class_obj}"
-    p "if #{@class_obj.user_id} == #{@user.id}"
+
     if @class_obj.user_id == @user.id
       erb :edit
     else
@@ -69,11 +68,17 @@ put '/:comment_type/:id' do
   @comment_type = params[:comment_type]
   @class_name = Object.const_get(@comment_type)
   @class_obj = @class_name.find(params[:id])
-  if @class_obj.update_attributes(body: params[:body_text])
-    redirect "/questions/#{params[:question_id]}"
+  if request.xhr?
+    if @class_obj.update_attributes(body: params[:body_text])
+      @class_obj.body
+    end
   else
-    @errors = @class_obj.errors.full_messages
-    erb :edit
+    if @class_obj.update_attributes(body: params[:body_text])
+      redirect "/questions/#{params[:question_id]}"
+    else
+      @errors = @class_obj.errors.full_messages
+      erb :edit
+    end
   end
 end
 
