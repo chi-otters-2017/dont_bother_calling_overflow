@@ -23,7 +23,7 @@
 	<h3>Answers:</h3>
 	<% @question.answers.each do |answer|%>
 		<ul>
-			<li><%= answer.body %><br><br>
+			<li><%= answer.body %>
 				<%if answer.best_answer%>
 					<h3>~*Best Answer*~</h3>
 				<%end%>
@@ -31,7 +31,7 @@
 				<% answer.comments.each do |comment| %>
 					<%= comment.body %><br><br>
 				<% end %>
-				<% if (@question.user_id == @user.id) && ((@question.answers.select { |answer| answer.best_answer == true }) == []) %>
+				<% if @question.user_id == @user.id && !@question.answers.find { |answer| answer.best_answer } %>
 				  	<form method="post" action="/answers/<%= answer.id %>">
 							<input type="submit"  value="Pick as best answer."></input><br>
 						</form>
