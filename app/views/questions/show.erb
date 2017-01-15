@@ -13,7 +13,7 @@
 			</div>
 			<!-- END OF HIDDEN FORM -->
 	<% end %>
-	<div class="comment_block"><h4><%= @question.comments.count %> Comments</h4>
+	<div class="comment_block"><h4>Comments</h4>
 		<% @question.comments.each do |comment| %>
 			<hr><p class="comment_block"><%= comment.body  %></p></hr>
 		<% end %>
@@ -32,7 +32,7 @@
 		<% end %>
 	</div>
 	<br>
-	<h3><%= @question.answers.count %> Answers</h3>
+	<h3>Answers</h3>
 
 	<% @question.answers.each do |answer|%>
 		<% if answer.best_answer %>
@@ -66,7 +66,7 @@
 					<p class="body_fonts"><%= answer.body %></p>
 	</div>
 				<div class="comment_block">
-						<h4><%= answer.comments.count %> Comments</h4>
+						<h4>Comments</h4>
 						<% answer.comments.each do |comment| %>
 							<hr><p class="comment_block"><%= comment.body  %></p></hr>
 						<% end %>
