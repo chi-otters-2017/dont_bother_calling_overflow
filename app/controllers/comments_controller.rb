@@ -15,7 +15,11 @@ post "/comments" do
                           user_id: session[:id]})
   if @comment.save
     if params[:commentable_type] == "Question"
-      redirect "/questions/#{params[:commentable_id]}"
+      if request.xhr?
+        %(<hr><p class="comment_block">#{@comment.body}</p></hr>)
+      else
+        redirect "/questions/#{params[:commentable_id]}"
+      end
     else
       redirect "/questions/#{Answer.find(params[:commentable_id]).question.id}"
     end
