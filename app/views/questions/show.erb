@@ -3,36 +3,45 @@
 	<p class="body_fonts"><%= @question.body %></p><br>
 	<% if login_check && @question.user_id == @user.id%>
 		<h4><a id="edit-question-link" class="comment" href="/questions/<%= @question.id %>/Question/<%= @question.id %>/edit">Edit question</a></h4><br>
+		<!-- HIDDEN FORM for editting question-->
+			<div class="text-form hidden" id="edit-question">
+			  <form method="Put" action="/Question/<%=@question.id%>" align="left">
+<!-- 			    <h3>Edit your question</h3> -->
+			    <textarea id="edit-field" rows="4" cols="20" name="body_text"><%=@question.body%></textarea>
+			    <input class="submit-edit" type="submit" value="submit">
+			  </form>
+			</div>
+			<!-- END OF HIDDEN FORM -->
 	<% end %>
-	<div class="comment_block"><h4><%= @question.comments.count %> Comments</h4>
-	<% @question.comments.each do |comment| %>
-		<hr><p class="comment_block"><%= comment.body  %></p></hr>
-	<% end %>
-
-	<% if login_check %>
-		<h4><a class="comment" href="/questions/<%= @question.id %>/comments/new">Add a comment</a></h4>
-
-		<div class="text-form hidden">
-		  <form method="Put" action="/Question/<%=@question.id%>" align="center">
-		    <h3>Edit your question</h3>
-		    <textarea id="edit-field" rows="4" cols="20" name="body_text"><%=@question.body%></textarea>
-		    <input id="submit-edit" type="submit" value="submit">
-		  </form>
-		</div>
-
-	<% end %>
+	<div class="comment_block"><h4>Comments</h4>
+		<% @question.comments.each do |comment| %>
+			<hr><p class="comment_block"><%= comment.body  %></p></hr>
+		<% end %>
+		<% if login_check %>
+			<h4><a class="comment" id="add-comment-to-question-link" href="/questions/<%= @question.id %>/comments/new">Add a comment</a></h4>
+			<!-- HIDDEN FORM for posting a comment to a question-->
+			<div class="text-form hidden" id="add-comment-to-question">
+			  <form method="Post" action="/comments" align="left">
+			  	<input type="hidden" name="commentable_type" value="Question"/>
+			  	<input type="hidden" name="commentable_id" value="<%=@question.id%>"/>
+			    <textarea id="edit-field" rows="4" cols="20" name="body"></textarea>
+			    <input class="submit-edit" type="submit" value="submit">
+			  </form>
+			</div>
+			<!-- END OF HIDDEN FORM -->
+		<% end %>
 	</div>
 	<br>
-	<h3><%= @question.answers.count %> Answers</h3>
+	<h3>Answers</h3>
 
 	<% @question.answers.each do |answer|%>
 		<% if answer.best_answer %>
-	<div class="verticalLine">			
+	<div class="verticalLine">
 				<h4 id="best_answer">Best answer</h4>
 				<p class="body_fonts"><%= answer.body %></p>
-	</div>	
+	</div>
 						<div class="comment_block">
-					<h4><%= answer.comments.count %> Comments</h4>					
+					<h4><%= answer.comments.count %> Comments</h4>
 					<% answer.comments.each do |comment| %>
 						<hr><p class="comment_block"><%= comment.body %></p></hr>
 					<% end %>
@@ -40,12 +49,12 @@
 					<% if login_check %>
 						<h4><a class="comment" href="/answers/<%= answer.id %>/comments/new">Add a comment</a></h4>
 					<% end %>
-	</div>				
+	</div>
 					<% if login_check && @answer.user_id == @user.id %>
 							<h4><a class="comment" href="/questions/<%= @question.id %>/Answer/<%= answer.id %>/edit">Edit answer</a></h4>
 					<% end %>
 				<br>
-		  
+
 	  <% end %>
 	<% end %>
 	<% if @question.answers != [] %>
@@ -57,7 +66,7 @@
 					<p class="body_fonts"><%= answer.body %></p>
 	</div>
 				<div class="comment_block">
-						<h4><%= answer.comments.count %> Comments</h4>	
+						<h4>Comments</h4>
 						<% answer.comments.each do |comment| %>
 							<hr><p class="comment_block"><%= comment.body  %></p></hr>
 						<% end %>
@@ -71,7 +80,7 @@
 						<% if login_check %>
 							<h4><a class="comment" class="comment" href="/answers/<%= answer.id %>/comments/new">Add a comment</a></h4>
 						<% end %>
-				</div>		
+				</div>
 						<% if login_check && @answer.user_id == @user.id %>
 								<h4><a class="comment" href="/questions/<%= @question.id %>/Answer/<%= answer.id %>/edit">Edit answer</a></h4>
 						<% end %>

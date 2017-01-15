@@ -10,8 +10,11 @@ post "/questions/:id/answers" do
 	@answer = Answer.new(body: params[:body], question_id: @question.id, user_id: session[:id])
 
 	if @answer.save
+		if request.xhr?
 
-	  redirect "/questions/#{@question.id}"
+		else
+	  	redirect "/questions/#{@question.id}"
+	  end
 	else
 		@errors = @answer.errors.full_messages
 

@@ -1,9 +1,29 @@
-<div class="text-form hidden">
+<!-- <div class="text-form hidden">
   <form method="Post" action="/questions/" align="center">
     <h1>Edit your <%= @comment_type.downcase %></h1>
     <input type="hidden" name="_method" value="PUT">
     <input type="hidden" name="question_id" value=<%=params[:question_id]%>>
     <textarea id="edit-field" rows="4" cols="20" name="body_text"><%=text_info%></textarea>
     <input id="submit-edit" type="submit" value="submit">
+  </form>
+<div> -->
+  <!-- variables need to supply in locals:
+    comment_type - comment, answer
+    h1_content - what goes in h1 tag
+    route - where to route after
+    method - what verb (Post or PUT)
+    question_id - question id
+    text_info - what goes in the textarea
+    submit_button_name - what text goes on the submit button
+   -->
+<div class="text-form hidden popup" id="<%=comment_type%>">
+  <form method="Post" action="<%=route%>" align="center">
+    <h1><%=h1_content%></h1>
+    <% if method == "PUT" %>
+      <input type="hidden" name="_method" value="PUT">
+    <% end %>
+    <input type="hidden" name="question_id" value=<%=question_id%> >
+    <textarea id="edit-field" rows="4" cols="20" name="body_text"><%=text_info%></textarea>
+    <input id="submit-edit" type="submit" value=<%=submit_button_name%> >
   </form>
 <div>

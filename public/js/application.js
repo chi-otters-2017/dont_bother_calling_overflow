@@ -1,13 +1,14 @@
 $(document).ready(function(){
   $("#login").on("click", function(){
     event.preventDefault();
-    $(".popup_login").removeClass("hidden")
-    $(".popup_login").addClass("displayed");
+    console.log($(".popup")[0]);
+    $($(".popup")[0]).removeClass("hidden")
+    $($(".popup")[0]).addClass("displayed");
   });
 
   $("#actual_popup").on("submit", function(){
-    $(".popup_login").removeClass("displayed");
-    $(".popup_login").addClass("hidden");
+    $(".popup").removeClass("displayed");
+    $(".popup").addClass("hidden");
     var data = $(this).serialize()
     var action = $(this).attr("action")
     var method = $(this).attr("method")
@@ -20,8 +21,9 @@ $(document).ready(function(){
 
   $("#registration").on("click", function(){
     event.preventDefault();
-    $(".popup_register").removeClass("hidden")
-    $(".popup_register").addClass("displayed");
+    $($(".popup")[1]).removeClass("hidden")
+    $($(".popup")[1]).addClass("displayed");
+    $($(".popup")[1]).css("height","30%");
   });
 
   $(".upvote_button").on("submit", function(){
@@ -43,34 +45,62 @@ $(document).ready(function(){
 
   $("#edit-question-link").on("click", function(){
     event.preventDefault();
-    $(".text-form").removeClass("hidden");
+    $("#edit-question").removeClass("hidden");
   });
 
-  $(".text-form form").on("submit", function(){
+  $("#edit-question form").on("submit", function(){
     event.preventDefault();
     var $form = $(this);
     var action = $form.attr("action");
     var method = $form.attr("method");
     var data = $form.serialize();
-    
+
     $.ajax({
       method: method,
       url: action,
       data: data
     })
     .done(function(response){
-      $(".question-body").text(response);
-      $(".text-form").addClass("hidden");
+      $(".body_fonts").text(response);
+      $("#edit-question").addClass("hidden");
     });
 
-      if (response === "Cannot vote"){window.alert("You cannot vote more then once!");
-      }
-      else{
-        var counter = $($target).parent().parent().find(".vote_tally");
-        $(counter).html("Score: "+ response);
-      }
+      // if (response === "Cannot vote"){window.alert("You cannot vote more then once!");
+      // }
+      // else{
+      //   var counter = $($target).parent().parent().find(".vote_tally");
+      //   $(counter).html("Score: "+ response);
+      // }
     })
+  $("#add-comment-to-question-link").on("click", function(){
+    event.preventDefault();
+    $("#add-comment-to-question").removeClass("hidden");
   });
+
+  $("#add-comment-to-question form").on("submit", function(){
+    event.preventDefault();
+    var $form = $(this);
+    var action = $form.attr("action");
+    var method = $form.attr("method");
+    var data = $form.serialize();
+    console.log(action);
+    console.log(method);
+    console.log(data);
+
+    $.ajax({
+      method: method,
+      url: action,
+      data: data
+    })
+    .done(function(response){
+      var commentBlock = $(".comment_block")[0]
+      var numOfComments = $(commentBlock).children().length
+      var lastComment = $(commentBlock).children()[numOfComments - 3];
+      $(response).insertAfter($(lastComment) );
+      $("#add-comment-to-question").addClass("hidden");
+    });
+  });
+
 
   $(".downvote_button").on("submit", function(){
     event.preventDefault();
@@ -93,8 +123,8 @@ $(document).ready(function(){
       var counter = $($target).parent().parent().find(".vote_tally");
       $(counter).html("Score: "+ response);
       }
+    });
   });
-
 });
 
 

@@ -37,8 +37,19 @@ li.navigation {
 .navigation a:hover {
     background-color: #111;
 }
+.popup {
+  opacity:0.92;
+  position: absolute;
+  z-index: 15;
+  top: 50%;
+  left: 50%;
+  margin: -100px 0 0 -150px;
 
-.popup_login {
+height: 25%;
+width: 25%;
+background: #000;
+}
+/*.popup_login {
   opacity:0.92;
   position: absolute;
   z-index: 15;
@@ -61,7 +72,7 @@ background: #000;
 height: 25%;
 width: 25%;
 background: #000;
-}
+}*/
 
 .hidden{
   display: none;
