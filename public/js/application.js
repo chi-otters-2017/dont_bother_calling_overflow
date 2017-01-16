@@ -4,6 +4,8 @@ $(document).ready(function(){
     console.log($(".popup")[0]);
     $($(".popup")[0]).removeClass("hidden")
     $($(".popup")[0]).addClass("displayed");
+    $($(".popup")[0]).css("height","25%");
+    $($(".popup")[0]).css("width","15%");
   });
 
   $("#actual_popup").on("submit", function(){
@@ -24,6 +26,7 @@ $(document).ready(function(){
     $($(".popup")[1]).removeClass("hidden")
     $($(".popup")[1]).addClass("displayed");
     $($(".popup")[1]).css("height","30%");
+    $($(".popup")[1]).css("width","20%");
   });
 
   $(".upvote_button").on("submit", function(){
